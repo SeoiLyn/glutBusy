@@ -39,6 +39,28 @@ def Windows_cmake():
     if choice == 'y' :
         os.startfile(shadow+"/glutBusy.sln")
 
+#for Windows cmake project usage
+def Apple_cmake():
+
+    path = os.getcwd()
+
+    #create depends folder
+    shadow = path+"/shadow"
+    if os.path.exists(shadow):
+        shutil.rmtree(shadow)
+    os.makedirs(shadow)
+   
+    os.chdir(shadow)
+
+    VS_VERSION = "Visual Studio 14 2015 Win64"
+
+    CMAKE_COMMAND = "cmake -G Xcode .."
+    os.system(CMAKE_COMMAND)
+
+    choice = raw_input("Do you want to open glutBusy.xcodeproj(y/n, default to n)?")
+    if choice == 'y' :
+        os.system("open glutBusy.xcodeproj")
+
 if __name__ == "__main__":
 
     if platform.system() == "Windows":
